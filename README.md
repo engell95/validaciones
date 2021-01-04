@@ -30,7 +30,7 @@ _Estas instrucciones te permitirán obtener una copia del proyecto en funcionami
 ***********************************************************************************************************************************************************************************
 Ejemplo de uso 
 
-//1 - Importamos el archivo con las funciones
+    //1 - Importamos el archivo con las funciones
     require_once('Validation/Validator.php');
 
     //2 - Iniciamos la clase
