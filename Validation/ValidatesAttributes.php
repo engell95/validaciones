@@ -115,7 +115,7 @@ trait ValidatesAttributes{
         ValidatesAttributes::requireParameterCount(1, $value, 'max');
         $size = ValidatesAttributes::getSize('', $value);
 
-        if($size >= $Parameters){
+        if($size > $Parameters){
             FormatsMessages::MessageErrors($Attribute,2,$Parameters);
             return true;
         }
