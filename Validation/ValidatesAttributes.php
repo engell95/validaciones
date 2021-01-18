@@ -94,9 +94,11 @@ trait ValidatesAttributes{
     public static function pattern($Attribute,$pattern){
         $regex = '/^('.self::$patterns[$pattern].')$/u';
         $value = ValidatesAttributes::Value($Attribute);
-        if(!preg_match($regex, $value)){
-            FormatsMessages::MessageErrors($Attribute,4);
-            return true;
+        if(!empty($value)){
+            if(!preg_match($regex, $value)){
+                FormatsMessages::MessageErrors($Attribute,4);
+                return true;
+            }
         }
         return;
     }
