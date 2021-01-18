@@ -113,9 +113,8 @@ trait ValidatesAttributes{
     {
         $value = ValidatesAttributes::Value($Attribute);
         ValidatesAttributes::requireParameterCount(1, $value, 'max');
-        $size = ValidatesAttributes::getSize('', $value);
-
-        if($size >= $Parameters){
+        $size = mb_strlen($value);
+        if($size > $Parameters){
             FormatsMessages::MessageErrors($Attribute,2,$Parameters);
             return true;
         }
@@ -134,11 +133,36 @@ trait ValidatesAttributes{
     public static function min($Attribute, $Parameters)
     {
         $value = ValidatesAttributes::Value($Attribute);
+        ValidatesAttributes::requireParameterCount(1, $value, 'max');
+        $size = mb_strlen($value);
+        if($size < $Parameters){
+            FormatsMessages::MessageErrors($Attribute,2,$Parameters);
+            return true;
+        }
+
+        return;
+    }
+
+     /**
+     * Validar que el valor este entre un rango
+     *
+     * @param  string  $attribute
+     * @param  mixed   $value
+     * @param  array   $parameters
+     * @return bool
+     */
+    public static function between($Attribute, $ParametersStart,$ParametersFinish)
+    {
+        if (!is_numeric($Attribute)) {
+            return true;
+        }
+
+        $value = ValidatesAttributes::Value($Attribute);
         ValidatesAttributes::requireParameterCount(1, $value, 'min');
         $size = ValidatesAttributes::getSize('', $value);
 
-        if($size < $Parameters){
-            FormatsMessages::MessageErrors($Attribute,3,$Parameters);
+        if($size > $ParametersStart or $size < $ParametersFinish){
+            FormatsMessages::MessageErrors($Attribute,1,$Parameters,"El campo $Attribute requiere un valor entre $ParametersStart y $ParametersFinish.");
             return true;
         }
 
