@@ -50,7 +50,7 @@ class Validator
     }
 
     /**
-     * Mensaje con errores
+     * Messaje con errores
      *
      * @access public
      * @return string
