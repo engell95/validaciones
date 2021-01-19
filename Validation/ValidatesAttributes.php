@@ -28,7 +28,7 @@ trait ValidatesAttributes{
     **/
     public static function Value($Atrribute){
         $value = '';
-        if(isset($_REQUEST[$Atrribute])){
+        if(isset($_REQUEST[$Atrribute]) && !empty($_REQUEST[$Atrribute])){
             $value =  $_REQUEST[$Atrribute];
         }
         return $value;
